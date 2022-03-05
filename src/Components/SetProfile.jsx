@@ -1,18 +1,19 @@
 import React , {useState} from 'react'
 import { useNavigate} from 'react-router-dom'
 import AddImage from './AddImage'
+import Img from '../images/img.png'
 
 const SetProfile = () => {
   let navigate = useNavigate()
 
-  const [profileImg,  setProfileImg] = useState()
+  const [profileImg,  setProfileImg] = useState(Img)
 
   return (
     <div className='h-5/6 flex justify-center items-center'>
         <div className="bg-dark-purple rounded-md p-12 inline-block">
             <h1 className='text-xl text-center'>Create Account</h1>
             
-            <AddImage changeProfielImg = {profileImg => setProfileImg(profileImg)} />
+            <AddImage profileImg={profileImg} setProfileImg={setProfileImg} />
             
             <img className='h-20 w-20' src={profileImg} alt="" />
 
