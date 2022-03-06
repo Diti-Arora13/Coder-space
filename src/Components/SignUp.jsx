@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const SignUp = () => {
   let navigate = useNavigate()
   return (
-    <div className='h-5/6 flex justify-center items-center'>
+    <div className='h-screen flex justify-center items-center'>
         <div className="bg-dark-purple rounded-md p-12 inline-block">
             <h1 className='text-xl text-center'>Sign up</h1>
 
