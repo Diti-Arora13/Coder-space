@@ -32,6 +32,7 @@ function App() {
           <Route path="/home" element={<HomePage profileImg={profileImg} />} />
 
           <Route path="/createPost" element={<CreatePost />} />
+
           <Route path="/profile" element={<Profile profileImg={profileImg} />} />
         </Routes>
       </div>

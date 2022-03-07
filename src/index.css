@@ -19,6 +19,8 @@
         box-shadow: 0px 4px 17px rgba(155, 81, 224, 0.53);
     }
 
+    .shadow{box-shadow: 0px 4px 17px rgba(155, 81, 224, 0.53)}
+
     .button:hover{
       @apply opacity-70
     }
