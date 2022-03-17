@@ -1,22 +1,36 @@
 import React from "react";
-import HeroImg from '../images/hero-image.png'
 import { Link } from 'react-router-dom'
 
-const Landing = ({logged, firstBtn, secondBtn}) => {
+import {app} from '../firebase-config'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+
+const Landing = ({ logged, firstBtn }) => {
+  getUser()
   return (
-    <div className="flex h-screen items-center justify-center">
-      <img alt="Hero Img" src={HeroImg} />
+    <div className="flex flex-col h-screen items-center justify-center">
 
-      <div className="px-12">
-        <h1 className="text-left font-medium text-xl">Coder's most favourite place to hangout</h1>
+        <h1 className="w-3/5 px-2 leading-tight gradient-text text-center font-bold-txt text-2xl">Coder's most favourite place to hangout together</h1>
 
-        <p className="my-2 mb-6 text-gray text-sm">A platform made for coders to connect and share anyything!!</p>
+        <p className="my-8 w-3/6 text-center text-gray-text text-md">Coder_space let’s is a social media for programmers. Share anything with other fellow programmer and connect with them</p>
 
-        <Link className="button" to={logged ? '/home' : '/signup'}>{firstBtn}</Link>
-        <Link className="button ml-10" to={logged ? '/createPost' : '/login'}>{secondBtn}</Link>
-      </div>
+        <div className="flex">
+          <Link className="bg-white text-black text-sm py-1 px-4 rounded-md" to={logged ? '/home' : '/signup'}>{firstBtn}</Link>
+        </div>
+      
     </div>
   );
 };
+
+  export const getUser = () => {
+  const auth = getAuth(app);
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.password;
+      console.log(uid);
+    } else {
+       
+    }
+  });
+}
 
 export default Landing;

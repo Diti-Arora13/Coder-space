@@ -1,7 +1,6 @@
 import React, {useRef} from 'react'
 
 const AddImage = ({profileImg, setProfileImg}) => {
-
   let fileInput = useRef()
 
   const imageHandler = e => {
@@ -17,17 +16,12 @@ const AddImage = ({profileImg, setProfileImg}) => {
     return (
       <div>
         <div>
-          <img onClick={() => fileInput.current.click()} className="hover:opacity-50 cursor-pointer h-24 w-24 rounded-full object-cover" src={profileImg} alt="pprofieImage" />
+          <img onClick={() => fileInput.current.click()} className="hover:opacity-50 cursor-pointer h-24 w-24 rounded-full object-cover ml-20 mt-5" src={profileImg} alt="pprofieImage" />
         </div>
-        <input className='invisible' ref={fileInput} type="file" accept="image/*" onChange={
-          (e) => {
-          imageHandler(e);
-          }} />
+        <input className='invisible' ref={fileInput} type="file" accept="image/*" onChange={imageHandler} />
 
-      {/* <button onClick={} className='button'>create</button> */}
       </div>
     )
   }
-// onClick={() => changeProfielImg(img)}
 
 export default AddImage
