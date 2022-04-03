@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const Profile = ({ profileImg, name, bio, myPost, bookmarkPost }) => {
+    const [activeTab, setActiveTab] = useState(true)
   return (
     <div className='bg-black-bg min-h-screen pt-20 pb-5 px-12'>
         <div className='flex items-center'>
@@ -19,18 +20,19 @@ const Profile = ({ profileImg, name, bio, myPost, bookmarkPost }) => {
         </div>
 
         <div className="flex items-center mt-10">
-            <h1 className='hover:bg-light-gray hover:bg-opacity-25 text-xl px-4 py-2 cursor-pointer'>My Posts</h1>
-            <h1 className="hover:bg-light-gray hover:bg-opacity-25 text-xl px-4 ml-10 py-2 cursor-pointer">Saved Posts</h1>
+            <h1 onClick={() => setActiveTab(true)} className={`hover:bg-light-gray hover:bg-opacity-25 text-xl px-4 py-2 cursor-pointer ${activeTab && 'border-b-2 border-g-color-1'}`}>My Posts</h1>
+
+            <h1 onClick={() => setActiveTab(false)} className={`hover:bg-light-gray hover:bg-opacity-25 text-xl px-4 ml-10 py-2 cursor-pointer ${!activeTab && 'border-b-2 border-g-color-1'}`}>Saved Posts</h1>
         </div>
 
         <div className="flex items-center flex-wrap -ml-4">
-            {myPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.img} />)}
-        </div>
+        { activeTab ? 
+            myPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.img}/> )
+            : 
+            bookmarkPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.img} />) } 
 
-
-        <div className="text-xl">Demo posts</div>
-        <div className="flex items-center flex-wrap -ml-4">
-            {bookmarkPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.img} />)}
+            {activeTab && myPost.length === 0 && <p className='text-gray-text pl-8 mt-8 text-lg'>No Post yet!</p>}
+            {!activeTab && bookmarkPost.length === 0 && <p className='text-gray-text pl-8 mt-8 text-lg'>No post saved yet!</p>}
         </div>
     </div>
   )
