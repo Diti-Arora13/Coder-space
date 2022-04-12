@@ -1,17 +1,13 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useNavigate} from 'react-router-dom'
 import AddImage from './AddImage'
 
 const SetProfile = ({profileImg, setProfileImg, setLogged, name, bio, setName, setBio}) => {
   let navigate = useNavigate()
-  const [settingName, setSettingName] =useState()
-  const [settingBio, setSettingBio] =useState()
 
   const HandleClick = () => {
     navigate('/home');
     setLogged(true);
-    setName(settingName)
-    setBio(settingBio)
   }
 
   return (
@@ -21,9 +17,9 @@ const SetProfile = ({profileImg, setProfileImg, setLogged, name, bio, setName, s
             
             <AddImage profileImg={profileImg} setProfileImg={setProfileImg} />
             
-            <input onChange={e => setSettingName(e.target.value)} placeholder='Name' className="input-field w-96 placeholder:text-gray-text" type="text" />
+            <input value={name} onChange={e => setName(e.target.value)} placeholder='Name' className="input-field w-96 placeholder:text-gray-text" type="text" />
 
-            <textarea onChange={e => setSettingBio(e.target.value)} placeholder='Bio' className="placeholder:text-gray-text input-field resize-none w-full mt-8" type="password" />
+            <textarea value={bio} onChange={e => setBio(e.target.value)} placeholder='Bio' className="placeholder:text-gray-text input-field resize-none w-full mt-8" type="password" />
 
             <button onClick={HandleClick} className='inline-block button mt-8'>Set profile</button>
         </div>

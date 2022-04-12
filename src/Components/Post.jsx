@@ -39,7 +39,7 @@ const Post = ({ img, post, bookmarkPost, setBookmarkPost, onDelete }) => {
             {post.delete && <AiOutlineDelete onClick={() => setVisible(!visible)} className='cursor-pointer text-xl text-white' />}
         </div>
 
-        <p className='px-8 pb-3 text-sm'>{post.desc}</p>
+        <p className='px-8 pb-3 text-sm'>{post.id}</p>
          <img src={post.img} alt="" className="w-full h-80 object-cover" />
 
         <div className="flex p-5 justify-between items-center">

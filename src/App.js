@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // COMPONENTS
 import Navbar from "./Components/Navbar";
@@ -10,12 +10,48 @@ import HomePage from './Components/HomePage';
 import Profile from './Components/Profile';
 import CreatePost from './Components/CreatePost';
 import PostImg from './images/post.png'
-
 import userImg from './images/defaultProfile.png'
 
 function App() {
   let bookmark = 5
   let likes = 3
+  
+  // getting data from local Storage
+  const getLsItems = () => {
+    let posts = localStorage.getItem('post')
+    console.log(posts);  
+    
+    if(posts) return JSON.parse(localStorage.getItem('post'))
+    else return [
+      {
+        'id': 1,
+        'name': 'Jason Mason',
+        'desc': 'Absolute!!!',
+        'img': PostImg,
+        'likes': likes,
+        'bookmark': 3,
+        'delete': false
+      },
+      {
+        'id': 2,
+        'name': 'Mention Hention',
+        'desc': 'yesss!!!',
+        'img': PostImg,
+        'likes': likes,
+        'bookmark': 3,
+        'delete': false
+      },
+      {
+        'id': 3,
+        'name': 'Humpty Dumpty',
+        'desc': 'Absolute!!!',
+        'img': PostImg,
+        'likes': likes,
+        'bookmark': 3,
+        'delete': false
+      },
+    ]
+  }
 
   // States
   const [profileImg,  setProfileImg] = useState(userImg)  
@@ -25,36 +61,8 @@ function App() {
   const [name, setName] = useState()
   const [bio, setBio] = useState()
   const [myPost, setMyPost] = useState([])
-  const [bookmarkPost, setBookmarkPosts] = useState([])
-  const [post, setPost] = useState([
-    {
-      'id': 1,
-      'name': 'Jason Mason',
-      'desc': 'Absolute!!!',
-      'img': PostImg,
-      'likes': likes,
-      'bookmark': 3,
-      'delete': false
-    },
-    {
-      'id': 2,
-      'name': 'Mention Hention',
-      'desc': 'yesss!!!',
-      'img': PostImg,
-      'likes': likes,
-      'bookmark': 3,
-      'delete': false
-    },
-    {
-      'id': 3,
-      'name': 'Humpty Dumpty',
-      'desc': 'Absolute!!!',
-      'img': PostImg,
-      'likes': likes,
-      'bookmark': 3,
-      'delete': false
-    },
-  ])
+  const [bookmarkPost, setBookmarkPosts] = useState(getLsItems())
+  const [post, setPost] = useState(getLsItems)
 
   // delete post
   const deletePost = id => {
@@ -70,9 +78,15 @@ function App() {
     setMyPost([newPost, ...myPost])
   }
 
+  // setting the post in local Storage
+  useEffect(() => {
+    localStorage.setItem('post', JSON.stringify(post))
+  }, [post])
+  
+
   return (
     <Router>
-      <div className="bg-black-bg font-sans text-white">
+      <div className="bg-black-bg min-h-screen font-sans text-white">
         
         <Navbar setProfileImg={setProfileImg} profileImg={profileImg} setLogged={setLogged} logged={logged} firstBtn={logged ? 'Profile' : 'Sign up'} secondBtn={logged ? 'Create Post' : 'Log in'} />
 
