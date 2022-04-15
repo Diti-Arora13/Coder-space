@@ -2,22 +2,13 @@ import React, { useState } from 'react'
 import { useNavigate} from 'react-router-dom'
 import AddImage from './AddImage'
 
-const SetProfile = ({profileImg, setProfileImg, setLogged, name, bio, setName, setBio}) => {
+const SetProfile = ({profileImg, setProfileImg,  name, setName, setBio, bio}) => {
   let navigate = useNavigate()
   const [nameError, setNameError] =  useState(false)
-  const [bioError, setBioError] =  useState(false)
 
   const HandleClick = () => {
-    if(!name && !bio) {
-      setNameError(true)
-      setBioError(true)
-    }
-    else if(!name) setNameError(true)
-    else if(!bio) setBioError(true)
-    else{
-      navigate('/home');
-      setLogged(true);
-    }
+    if(!name) setNameError(true)
+    else navigate('/home')
   }
 
   return (
@@ -29,7 +20,7 @@ const SetProfile = ({profileImg, setProfileImg, setLogged, name, bio, setName, s
             
             <input value={name} onChange={e => setName(e.target.value)} placeholder='Name' className={`input-field w-96 placeholder:text-gray-text ${nameError && 'error'}`} />
 
-            <textarea value={bio} onChange={e => setBio(e.target.value)} placeholder='Bio' className={`placeholder:text-gray-text input-field resize-none w-full mt-8 ${bioError && 'error'}`} />
+            <textarea value={bio} onChange={e => setBio(e.target.value)} placeholder='Bio' className={`input-field w-96 placeholder:text-gray-text mt-8`} />
 
             <button onClick={HandleClick} className='inline-block button mt-8'>Set profile</button>
         </div>

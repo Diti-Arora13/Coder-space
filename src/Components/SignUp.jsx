@@ -1,23 +1,16 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import {app} from '../firebase-config'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { handleLogin } from './Login'
  
-const SignUp = ({email, setEmail, password, setPassword}) => {
+const SignUp = ({ email, setEmail, password, setPassword, setLogged }) => {
   
+  // states
   const [emailError, setEmailError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
+  let navigate = useNavigate()
+  
+  const handleSignup = () => setLogged(true)
 
-  const handleSignup = () => {
-    const authentication = getAuth(app);
-    createUserWithEmailAndPassword(authentication, email, password)
-      .then(() => {
-        handleLogin(email, password)
-      })
-  }
-
+  // click event on signup btn
   const handleClick = () => {
     if(!email && !password) {
       setEmailError(true)
@@ -28,11 +21,9 @@ const SignUp = ({email, setEmail, password, setPassword}) => {
     else{
       navigate('/setProfile')
       handleSignup();
-    }
   }
-
-  let navigate = useNavigate()
-
+}
+  
   return (
     <div className='h-screen flex justify-center items-center'>
         <div className="bg-gray rounded-md p-12 flex flex-col items-center">

@@ -15,7 +15,7 @@ import userImg from './images/defaultProfile.png'
 function App() {
   let bookmark = 5
   let likes = 3
-  
+
   // getting data from local Storage
   const getLsItems = () => {
     let posts = localStorage.getItem('post')
@@ -54,7 +54,7 @@ function App() {
 
   // States
   const [profileImg,  setProfileImg] = useState(userImg)  
-  const [logged, setLogged] = useState(true)
+  const [logged, setLogged] = useState(localStorage.getItem('logged'))
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [name, setName] = useState()
@@ -78,10 +78,10 @@ function App() {
   }
 
   // setting the post in local Storage
-  useEffect(() => {
-    localStorage.setItem('post', JSON.stringify(post))
-  }, [post])
+  useEffect(() => localStorage.setItem('post', JSON.stringify(post)), [post])
   
+  // setting the logged state in local Storage
+  useEffect(() => localStorage.setItem('logged', JSON.stringify(logged)) , [logged])
 
   return (
     <Router>
@@ -92,7 +92,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing logged={logged} firstBtn={logged ? 'Home' : 'Join Coder_space'} secondBtn={logged ? 'Create Post' : 'Log in'} />} />
 
-          <Route path="/signup" element={<SignUp email={email} setEmail={setEmail} password={password} setPassword={setPassword} />} />
+          <Route path="/signup" element={<SignUp setLogged={setLogged} logged={logged} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />} />
 
           <Route path="/login" element={<Login setLogged={setLogged} email={email} password={password} setPassword={setPassword} setEmail={setEmail} />} />
 
