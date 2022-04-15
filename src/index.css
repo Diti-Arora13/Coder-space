@@ -27,4 +27,9 @@
       @apply bg-light-gray p-2 rounded-md outline-none
     }
 
+    .error{
+      color: #fc4949;
+      border-bottom: 4px solid #fc4949;
+    }
+
   }

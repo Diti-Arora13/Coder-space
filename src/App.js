@@ -19,7 +19,6 @@ function App() {
   // getting data from local Storage
   const getLsItems = () => {
     let posts = localStorage.getItem('post')
-    console.log(posts);  
     
     if(posts) return JSON.parse(localStorage.getItem('post'))
     else return [
@@ -61,7 +60,7 @@ function App() {
   const [name, setName] = useState()
   const [bio, setBio] = useState()
   const [myPost, setMyPost] = useState([])
-  const [bookmarkPost, setBookmarkPosts] = useState(getLsItems())
+  const [bookmarkPost, setBookmarkPosts] = useState([])
   const [post, setPost] = useState(getLsItems)
 
   // delete post
