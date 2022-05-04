@@ -32,4 +32,14 @@
       border-bottom: 4px solid #fc4949;
     }
 
+    .loader-text{
+      animation: loadingAnim 1s forwards;
+      transition: 1s linear;
+    }
+
+    @keyframes loadingAnim {
+      10%, 50%, 90% { opacity: 0.5}
+      0%, 20%, 60%, 100%  { opacity: 1}
+    }
+
   }

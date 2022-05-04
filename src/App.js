@@ -98,19 +98,27 @@ function App() {
         <Navbar setProfileImg={setProfileImg} profileImg={profileImg} setLogged={setLogged} logged={logged} firstBtn={logged ? 'Profile' : 'Sign up'} secondBtn={logged ? 'Create Post' : 'Log in'} />
 
         <Routes>
+          {/* LANDING */}
           <Route path="/" element={<Landing logged={logged} firstBtn={logged ? 'Home' : 'Join Coder_space'} secondBtn={logged ? 'Create Post' : 'Log in'} />} />
 
+          {/* SIGN UP */}
           <Route path="/signup" element={<SignUp setLogged={setLogged} logged={logged} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />} />
 
+          {/* LOGIN */}
           <Route path="/login" element={<Login setLogged={setLogged} email={email} password={password} setPassword={setPassword} setEmail={setEmail} />} />
 
+          {/* SET PROFILE */}
           <Route path="/setProfile" element={ <SetProfile setLogged={setLogged} setProfileImg={setProfileImg} profileImg={profileImg} setName={setName}  setBio={setBio} name={name} bio={bio} /> } />
 
+          {/* HOME PAGE */}
           <Route path="/home" element={<HomePage onDelete={deletePost} posts={post} bookmarkPost={bookmarkPost} setBookmarkPost={setBookmarkPosts} profileImg={profileImg} />} />
 
+          {/* CREATE POST */}
           <Route path="/createPost" element={<CreatePost onAdd={addPost} />} />
 
+          {/* PROFILE */}
           <Route path="/profile" element={<Profile name={name} bio={bio} email={email} profileImg={profileImg} myPost={myPost} bookmarkPost={bookmarkPost} />} />
+
         </Routes>
       </div>
     </Router>
