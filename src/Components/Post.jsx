@@ -40,7 +40,7 @@ const Post = ({ img, post, bookmarkPost, setBookmarkPost, onDelete }) => {
         </div>
 
         <p className='px-8 pb-3 text-sm'>{post.id}</p>
-         <img src={post.img} alt="" className="w-full h-80 object-cover" />
+         <img src={post.cloudImg} alt="" className="w-full h-80 object-cover" />
 
         <div className="flex p-5 justify-between items-center">
             <div className='flex items-center' onClick={toggleLike} >

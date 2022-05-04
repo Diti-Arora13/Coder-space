@@ -1,13 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import AddPost from '../images/addPost.png'
+import Axios from 'axios'
 
 const CreatePost = ({ onAdd }) => {
   let fileInput = useRef()
-  const [postImg, setPostImg] = useState(AddPost)
-  const [desc, setDesc] = useState()
-
   let navigate  = useNavigate()
+
+  const [postImg, setPostImg] = useState(AddPost)
+  const [cloudImg, setcloudImg] = useState()
+  const [desc, setDesc] = useState()
 
   const imageHandler = e => {
     const reader = new FileReader();
@@ -16,12 +18,23 @@ const CreatePost = ({ onAdd }) => {
       setPostImg(reader.result)
     }
   }
-  reader.readAsDataURL(e.target.files[0])
+    reader.readAsDataURL(e.target.files[0])
+  }
+
+  const uploadImg = () => {
+    const formData = new FormData()
+    formData.append('file', postImg)
+    formData.append('upload_preset', 'hk7ixu95')
+
+    Axios.post('https://api.cloudinary.com/v1_1/diti/image/upload', formData)
+    .then(res => {
+      onAdd(desc, res.data.secure_url)
+    })
   }
 
   //on submit
   const handleSubmit = () => {
-    onAdd(desc, postImg)
+    uploadImg()
     navigate('/home')
   }
 

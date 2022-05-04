@@ -26,7 +26,7 @@ function App() {
         'id': 1,
         'name': 'Jason Mason',
         'desc': 'Absolute!!!',
-        'img': PostImg,
+        'cloudImg': PostImg,
         'likes': likes,
         'bookmark': 3,
         'delete': false
@@ -35,7 +35,7 @@ function App() {
         'id': 2,
         'name': 'Mention Hention',
         'desc': 'yesss!!!',
-        'img': PostImg,
+        'cloudImg': PostImg,
         'likes': likes,
         'bookmark': 3,
         'delete': false
@@ -44,7 +44,7 @@ function App() {
         'id': 3,
         'name': 'Humpty Dumpty',
         'desc': 'Absolute!!!',
-        'img': PostImg,
+        'cloudImg': PostImg,
         'likes': likes,
         'bookmark': 3,
         'delete': false
@@ -57,8 +57,8 @@ function App() {
   const [logged, setLogged] = useState(localStorage.getItem('logged'))
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-  const [name, setName] = useState()
-  const [bio, setBio] = useState()
+  const [name, setName] = useState(localStorage.getItem('name'))
+  const [bio, setBio] = useState(localStorage.getItem('bio'))
   const [myPost, setMyPost] = useState([])
   const [bookmarkPost, setBookmarkPosts] = useState([])
   const [post, setPost] = useState(getLsItems)
@@ -70,11 +70,12 @@ function App() {
   }
 
   // add Post
-  const addPost = (desc, img) => {
+  const addPost = (desc, cloudImg) => {
     const id = Math.floor(Math.random() * 1000) + 1
-    const newPost = {id, name, desc, img, likes, bookmark, delete:true}
+    const newPost = {id, name, desc, cloudImg, likes, bookmark, delete:true}
     setPost([newPost, ...post])
     setMyPost([newPost, ...myPost])
+    console.log(cloudImg);
   }
 
   // setting the post in local Storage
@@ -82,6 +83,13 @@ function App() {
   
   // setting the logged state in local Storage
   useEffect(() => localStorage.setItem('logged', JSON.stringify(logged)) , [logged])
+  
+  // setting the name state in local Storage
+  useEffect(() => localStorage.setItem('name', name) , [name])
+
+  // setting the bio state in local Storage
+  useEffect(() => localStorage.setItem('bio', bio) , [bio])
+
 
   return (
     <Router>
