@@ -26,12 +26,15 @@ const Profile = ({ profileImg, name, bio, myPost, bookmarkPost }) => {
         </div>
 
         <div className="flex items-center flex-wrap -ml-4">
-        { activeTab ? 
-            myPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.img}/> )
-            : 
-            bookmarkPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.img} />) } 
+
+            { activeTab ? 
+                myPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.cloudImg}/>)
+                : 
+                bookmarkPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.cloudImg} />) 
+            } 
 
             {activeTab && myPost.length === 0 && <p className='text-gray-text pl-8 mt-8 text-lg'>No Post yet!</p>}
+
             {!activeTab && bookmarkPost.length === 0 && <p className='text-gray-text pl-8 mt-8 text-lg'>No post saved yet!</p>}
         </div>
     </div>

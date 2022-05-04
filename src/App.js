@@ -59,7 +59,7 @@ function App() {
   const [password, setPassword] = useState()
   const [name, setName] = useState(localStorage.getItem('name'))
   const [bio, setBio] = useState(localStorage.getItem('bio'))
-  const [myPost, setMyPost] = useState([])
+  const [myPost, setMyPost] = useState(JSON.parse(localStorage.getItem('my post')))
   const [bookmarkPost, setBookmarkPosts] = useState([])
   const [post, setPost] = useState(getLsItems)
 
@@ -75,11 +75,13 @@ function App() {
     const newPost = {id, name, desc, cloudImg, likes, bookmark, delete:true}
     setPost([newPost, ...post])
     setMyPost([newPost, ...myPost])
-    console.log(cloudImg);
   }
 
   // setting the post in local Storage
   useEffect(() => localStorage.setItem('post', JSON.stringify(post)), [post])
+  
+  // setting the Mypost in local Storage
+  useEffect(() => localStorage.setItem('my post', JSON.stringify(myPost)), [myPost])
   
   // setting the logged state in local Storage
   useEffect(() => localStorage.setItem('logged', JSON.stringify(logged)) , [logged])
