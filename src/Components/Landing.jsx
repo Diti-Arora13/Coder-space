@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
-import {app} from '../firebase-config'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-
 const Landing = ({ logged, firstBtn }) => {
-  getUser()
   return (
     <div className="flex flex-col h-screen items-center justify-center">
 
@@ -20,17 +16,5 @@ const Landing = ({ logged, firstBtn }) => {
     </div>
   );
 };
-
-  export const getUser = () => {
-  const auth = getAuth(app);
-    onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.password;
-      console.log(uid);
-    } else {
-       
-    }
-  });
-}
 
 export default Landing;

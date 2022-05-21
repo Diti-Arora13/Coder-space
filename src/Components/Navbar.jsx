@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import NavbarAvatar from './NavbarAvatar'
 
-const Navbar = ({ firstBtn, secondBtn, logged, profileImg, setLogged}) => {
+const Navbar = ({ firstBtn, logged, profileImg, setLogged}) => {
 
   let navigate = useNavigate()
   
@@ -16,7 +16,7 @@ const Navbar = ({ firstBtn, secondBtn, logged, profileImg, setLogged}) => {
 
         <div className="flex items-center">
           <Link className='button' to={logged ? '/profile' : '/signup'}>{firstBtn}</Link>
-          <Link className='button mx-10' to={logged ? '/createPost' : '/login'}>{secondBtn}</Link>
+          {logged && <Link className='button mx-10' to='/createPost' >Create Post</Link>}
           {logged && <NavbarAvatar setLogged={setLogged} profileImg={profileImg} />}
         </div>
     </div>

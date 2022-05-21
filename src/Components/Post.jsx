@@ -7,7 +7,10 @@ import { BsBookmark } from 'react-icons/bs';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { AiOutlineDelete } from 'react-icons/ai';
 
-const Post = ({ img, post, bookmarkPost, setBookmarkPost, onDelete }) => {
+const Post = ({ img, post, bookmarkPost, setBookmarkPost, onDelete, myPost }) => {
+
+    let pfp1 = 'https://images.unsplash.com/photo-1605406575497-015ab0d21b9b?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d29tYW58ZW58MHx8MHx8&auto=format&fit=crop&w=600'
+
     const [likeIcon, setLikeIcon] = useState(false);
     const [bookmarkIcon, setBookmarkIcon] = useState(bookmarkPost.includes(post));
     const [visible, setVisible] = useState(false)
@@ -22,12 +25,10 @@ const Post = ({ img, post, bookmarkPost, setBookmarkPost, onDelete }) => {
         setBookmarkIcon(!bookmarkIcon)
     }
 
-    //
-
     return (
     <div className="bg-gray w-2/5 my-5 rounded-lg relative overflow-hidden">
         {/* DELETE ALERT */}
-       {post.delete && visible && <ConfirmDelete post={post} onDelete={onDelete} />}
+       {post.delete && visible && <ConfirmDelete visible={visible} setVisible={setVisible} post={post} onDelete={onDelete} />}
 
         {/* POST */}
         <div className="flex justify-between items-center px-8">
@@ -36,7 +37,7 @@ const Post = ({ img, post, bookmarkPost, setBookmarkPost, onDelete }) => {
                 <h1 className="text-md ml-5">{post.name}</h1>
             </div>
 
-            {post.delete && <AiOutlineDelete onClick={() => setVisible(!visible)} className='cursor-pointer text-xl text-white' />}
+            {post.delete && <AiOutlineDelete onClick={() => setVisible(true)} className='cursor-pointer text-xl text-white' />}
         </div>
 
         <p className='px-8 pb-3 text-sm'>{post.id}</p>

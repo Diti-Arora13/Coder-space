@@ -59,7 +59,7 @@ function App() {
   const [password, setPassword] = useState()
   const [name, setName] = useState(localStorage.getItem('name'))
   const [bio, setBio] = useState(localStorage.getItem('bio'))
-  const [myPost, setMyPost] = useState(JSON.parse(localStorage.getItem('my post')))
+  const [myPost, setMyPost] = useState(JSON.parse(localStorage.getItem('mypost')) )
   const [bookmarkPost, setBookmarkPosts] = useState([])
   const [post, setPost] = useState(getLsItems)
 
@@ -81,8 +81,8 @@ function App() {
   useEffect(() => localStorage.setItem('post', JSON.stringify(post)), [post])
   
   // setting the Mypost in local Storage
-  useEffect(() => localStorage.setItem('my post', JSON.stringify(myPost)), [myPost])
-  
+  useEffect(() => localStorage.setItem('mypost', JSON.stringify(myPost)), [myPost])
+
   // setting the logged state in local Storage
   useEffect(() => localStorage.setItem('logged', JSON.stringify(logged)) , [logged])
   
@@ -97,11 +97,11 @@ function App() {
     <Router>
       <div className="bg-black-bg min-h-screen font-sans text-white">
         
-        <Navbar setProfileImg={setProfileImg} profileImg={profileImg} setLogged={setLogged} logged={logged} firstBtn={logged ? 'Profile' : 'Sign up'} secondBtn={logged ? 'Create Post' : 'Log in'} />
+        <Navbar setProfileImg={setProfileImg} profileImg={profileImg} setLogged={setLogged} logged={logged} firstBtn={logged ? 'Profile' : 'Sign up'} />
 
         <Routes>
           {/* LANDING */}
-          <Route path="/" element={<Landing logged={logged} firstBtn={logged ? 'Home' : 'Join Coder_space'} secondBtn={logged ? 'Create Post' : 'Log in'} />} />
+          <Route path="/" element={<Landing logged={logged} firstBtn={logged ? 'Home' : 'Join Coder_space'} />} />
 
           {/* SIGN UP */}
           <Route path="/signup" element={<SignUp setLogged={setLogged} logged={logged} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />} />
@@ -113,13 +113,13 @@ function App() {
           <Route path="/setProfile" element={ <SetProfile setLogged={setLogged} setProfileImg={setProfileImg} profileImg={profileImg} setName={setName}  setBio={setBio} name={name} bio={bio} /> } />
 
           {/* HOME PAGE */}
-          <Route path="/home" element={<HomePage onDelete={deletePost} posts={post} bookmarkPost={bookmarkPost} setBookmarkPost={setBookmarkPosts} profileImg={profileImg} />} />
+          <Route path="/home" element={<HomePage onDelete={deletePost} posts={post} bookmarkPost={bookmarkPost} setBookmarkPost={setBookmarkPosts} profileImg={profileImg} myPost={myPost} />} />
 
           {/* CREATE POST */}
           <Route path="/createPost" element={<CreatePost onAdd={addPost} />} />
 
           {/* PROFILE */}
-          <Route path="/profile" element={<Profile name={name} bio={bio} email={email} profileImg={profileImg} myPost={myPost} bookmarkPost={bookmarkPost} />} />
+          <Route path="/profile" element={<Profile onDelete={deletePost} setBio={setBio} name={name} bio={bio} email={email} profileImg={profileImg} myPost={myPost} bookmarkPost={bookmarkPost} />} />
 
         </Routes>
       </div>
