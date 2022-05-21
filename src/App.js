@@ -119,7 +119,7 @@ function App() {
           <Route path="/createPost" element={<CreatePost onAdd={addPost} />} />
 
           {/* PROFILE */}
-          <Route path="/profile" element={<Profile onDelete={deletePost} setBio={setBio} name={name} bio={bio} email={email} profileImg={profileImg} myPost={myPost} bookmarkPost={bookmarkPost} />} />
+          <Route path="/profile" element={<Profile onDelete={deletePost} setBio={setBio} name={name} bio={bio} email={email} profileImg={profileImg} myPost={myPost} setBookmarkPost={setBookmarkPosts} bookmarkPost={bookmarkPost} />} />
 
         </Routes>
       </div>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import MyPost from './MyPost';
+import SavedPost from './SavedPost';
 
-const Profile = ({ profileImg, setBio, name, bio, myPost, bookmarkPost, onDelete }) => {
+const Profile = ({ profileImg, setBio, name, bio, myPost, bookmarkPost, setBookmarkPost, onDelete }) => {
     const [activeTab, setActiveTab] = useState(true)
 
   return (
@@ -27,12 +28,12 @@ const Profile = ({ profileImg, setBio, name, bio, myPost, bookmarkPost, onDelete
             <h1 onClick={() => setActiveTab(false)} className={`hover:bg-light-gray hover:bg-opacity-25 text-xl px-4 ml-10 py-2 cursor-pointer ${!activeTab && 'border-b-2 border-g-color-1'}`}>Saved Posts</h1>
         </div>
 
-        <div className="flex items-center flex-wrap -ml-4">
+        <div className="flex items-start flex-wrap -ml-4">
 
             { activeTab ? 
-                myPost.map(post => <MyPost onDelete={onDelete} post={post} />): 
-
-                bookmarkPost.map(post => <img alt='' className='h-72 w-1/3 object-cover mt-5 px-4 cursor-pointer' src={post.cloudImg} />) 
+                myPost.map(post => <MyPost onDelete={onDelete} post={post} />) 
+                :
+                bookmarkPost.map(post => <SavedPost setSavedPost={setBookmarkPost} savedPost={bookmarkPost} post={post} />) 
             } 
 
             {activeTab && myPost.length === 0 && <p className='text-gray-text pl-8 mt-8 text-lg'>No Post yet!</p>}

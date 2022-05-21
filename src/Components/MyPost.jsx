@@ -11,9 +11,9 @@ const MyPost = ({ post,  onDelete }) => {
         <ConfirmDelete visible={visible} setVisible={setVisible} post={post} onDelete={onDelete} />
       }
 
-      <AiOutlineDelete onClick={() => setVisible(true)} className="cursor-pointer  text-xl text-white ml-2 my-2 " />
+      <AiOutlineDelete onClick={() => setVisible(true)} className="cursor-pointer  text-2xl p-3  hover:bg-black-bg hover:bg-opacity-40 text-white " />
 
-      <img alt="" className="h-auto w-full object-cover cursor-pointer mt-4" src={post.cloudImg} />
+      <img alt="" className="h-72 w-full object-cover cursor-pointer " src={post.cloudImg} />
     </div>
   );
 };
