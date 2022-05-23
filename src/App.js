@@ -60,8 +60,14 @@ function App() {
     else return []
   }
 
+  // pfp
+  const getPfp = () => {
+    let pfp = localStorage.getItem('pfp') 
+    return pfp ? pfp : userImg
+  }
+
   // States
-  const [profileImg,  setProfileImg] = useState(userImg)  
+  const [profileImg,  setProfileImg] = useState(getPfp)  
   const [logged, setLogged] = useState(localStorage.getItem('logged'))
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
@@ -93,7 +99,7 @@ function App() {
   useEffect(() => localStorage.setItem('mypost', JSON.stringify(myPost)), [myPost])
 
   // setting the logged state in local Storage
-  useEffect(() => localStorage.setItem('logged', JSON.stringify(logged)) , [logged])
+  useEffect(() => localStorage.setItem('logged', logged) , [logged])
   
   // setting the name state in local Storage
   useEffect(() => localStorage.setItem('name', name) , [name])

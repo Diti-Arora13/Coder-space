@@ -14,7 +14,7 @@ const Profile = ({ profileImg, setBio, name, bio, myPost, bookmarkPost, setBookm
             <div className="ml-10 ">
                 <h1 className=" whitespace-nowrap text-md md:text-lg flex items-center">{name}</h1>
                 
-                <p className="text-xs text-gray-text mt-4 mb-6 w-full sm:w-4/5 xl:w-1/2">{bio}</p>
+                <p className="text-xs text-gray-text mt-4 mb-6 w-1/2">{bio}</p>
 
                 <Link to='/setProfile' className='bg-white whitespace-nowrap text-black py-2 px-3 rounded-md text-xs'>Edit Profile</Link>
             </div>
