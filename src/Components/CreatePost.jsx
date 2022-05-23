@@ -8,7 +8,6 @@ const CreatePost = ({ onAdd }) => {
   let navigate  = useNavigate()
 
   const [postImg, setPostImg] = useState(AddPost)
-  const [cloudImg, setcloudImg] = useState()
   const [desc, setDesc] = useState()
 
   const imageHandler = e => {
@@ -40,8 +39,8 @@ const CreatePost = ({ onAdd }) => {
 
   return (
     <div className='h-screen flex justify-center items-center'>
-        <div className="w-2/5 bg-gray">
-          <input value={desc} onChange={e => setDesc(e.target.value)} className='px-2 py-4 bg-transparent text-gray-text outline-none text-sm' placeholder='Description...'/>
+        <div className=" w-9/12 md:w-2/5 bg-gray flex flex-col justify-center items-center">
+          <input value={desc} onChange={e => setDesc(e.target.value)} className='px-2 py-4 bg-transparent text-gray-text outline-none text-sm w-full ' placeholder='Description...'/>
 
           <img onClick={() => fileInput.current.click()} className="hover:opacity-50 cursor-pointer w-full h-80 object-cover" src={postImg} alt="pprofieImage" />
           <input className='invisible' ref={fileInput} type="file" accept="image/*" onChange={imageHandler} />

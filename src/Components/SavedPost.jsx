@@ -8,7 +8,7 @@ const SavedPost = ({ post, savedPost, setSavedPost }) => {
   }
 
   return (
-    <div className="bg-gray rounded-md mx-4 w-1/3 mt-5 overflow-hidden">
+    <div className="bg-gray rounded-md mx-4 w-full sm:w-64 md:w-80 xl:w-96 mt-5 overflow-hidden">
 
       <AiOutlineClose onClick={() => removeSavedPost(post.id)} className="cursor-pointer text-2xl text-white p-3  hover:bg-black-bg hover:bg-opacity-40" />
 

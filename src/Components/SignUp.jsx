@@ -26,10 +26,10 @@ const SignUp = ({ email, setEmail, password, setPassword, setLogged }) => {
   
   return (
     <div className='h-screen flex justify-center items-center'>
-        <div className="bg-gray rounded-md p-12 flex flex-col items-center">
-            <h1 className='text-xl text-center'>Sign up</h1>
+        <div className="bg-gray rounded-md p-8 ex-small:p-12 flex flex-col items-center">
+            <h1 className='ex-small:text-xl text-lg text-center'>Sign up</h1>
 
-            <input value={email} onChange={e => setEmail(e.target.value)} placeholder='Email Address' className={`input-field w-96 mt-8 placeholder:text-gray-text ${emailError && 'error'}`} type="email" />
+            <input value={email} onChange={e => setEmail(e.target.value)} placeholder='Email Address' className={`input-field ex-small:w-96 mt-8 placeholder:text-gray-text ${emailError && 'error'}`} type="email" />
 
             <input value={password} onChange={e => setPassword(e.target.value)} placeholder='Password' className={`input-field w-full mt-8 placeholder:text-gray-text ${passwordError && 'error'}`} type="password" />
 

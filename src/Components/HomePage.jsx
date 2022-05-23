@@ -10,7 +10,7 @@ const HomePage = ({ profileImg, posts, bookmarkPost, setBookmarkPost, onDelete, 
 
   return (
     <>
-      <div className='flex pt-4 flex-col items-center'>
+      <div className='flex pt-20 flex-col items-center'>
         {!loading && <Loader />}
         {
             posts.map(post => <Post key={post.id} bookmarkPost={bookmarkPost} setBookmarkPost={setBookmarkPost} onDelete={onDelete} post={post} img={profileImg} myPost={myPost} />)

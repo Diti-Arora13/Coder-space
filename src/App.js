@@ -52,6 +52,14 @@ function App() {
     ]
   }
 
+  // getting myPost
+  const getMyPost = () => {
+    let mypost = localStorage.getItem('mypost')
+    
+    if(mypost) return JSON.parse(localStorage.getItem('mypost'))
+    else return []
+  }
+
   // States
   const [profileImg,  setProfileImg] = useState(userImg)  
   const [logged, setLogged] = useState(localStorage.getItem('logged'))
@@ -59,7 +67,7 @@ function App() {
   const [password, setPassword] = useState()
   const [name, setName] = useState(localStorage.getItem('name'))
   const [bio, setBio] = useState(localStorage.getItem('bio'))
-  const [myPost, setMyPost] = useState(JSON.parse(localStorage.getItem('mypost')) )
+  const [myPost, setMyPost] = useState(getMyPost)
   const [bookmarkPost, setBookmarkPosts] = useState([])
   const [post, setPost] = useState(getLsItems)
 
@@ -74,6 +82,7 @@ function App() {
     const id = Math.floor(Math.random() * 1000) + 1
     const newPost = {id, name, desc, cloudImg, likes, bookmark, delete:true}
     setPost([newPost, ...post])
+
     setMyPost([newPost, ...myPost])
   }
 
@@ -91,7 +100,6 @@ function App() {
 
   // setting the bio state in local Storage
   useEffect(() => localStorage.setItem('bio', bio) , [bio])
-
 
   return (
     <Router>

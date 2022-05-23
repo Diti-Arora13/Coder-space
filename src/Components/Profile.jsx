@@ -8,18 +8,16 @@ const Profile = ({ profileImg, setBio, name, bio, myPost, bookmarkPost, setBookm
 
   return (
     <div className='bg-black-bg min-h-screen pt-20 pb-5 px-12'>
-        <div className='flex items-center'>
-            <img className='h-52 w-52 object-cover rounded-full shadow flex-shrink-0' src={profileImg} alt="" />
+        <div className='flex mt-6 md:mt-4 items-start md:items-center'>
+            <img className='md:h-52 md:w-52 h-40 w-40 object-cover rounded-full shadow flex-shrink-0' src={profileImg} alt="" />
 
-            <div className="ml-10">
-                <div className="flex items-center">
-                    <h1 className="text-xl flex items-center">{name}</h1>
-                    <Link to='/setProfile' className='bg-white text-black text-sm py-1 px-4 rounded-md ml-16'>Edit Profile</Link>
-                </div>
+            <div className="ml-10 ">
+                <h1 className=" whitespace-nowrap text-md md:text-lg flex items-center">{name}</h1>
+                
+                <p className="text-xs text-gray-text mt-4 mb-6 w-full sm:w-4/5 xl:w-1/2">{bio}</p>
 
-                <p className="text-gray-text mt-6 w-1/2">{bio === null ? setBio('') :  bio}</p>
+                <Link to='/setProfile' className='bg-white whitespace-nowrap text-black py-2 px-3 rounded-md text-xs'>Edit Profile</Link>
             </div>
-
         </div>
 
         <div className="flex items-center mt-10">
