@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate} from 'react-router-dom'
 import AddImage from './AddImage'
+import Loader from './Loader'
 
-const SetProfile = ({profileImg, setProfileImg,  name, setName, setBio, bio}) => {
+const SetProfile = ({profileImg, setProfileImg,  name, setName, setBio, bio, loading, setLoading}) => {
   let navigate = useNavigate()
   const [nameError, setNameError] =  useState(false)
 
@@ -12,11 +13,13 @@ const SetProfile = ({profileImg, setProfileImg,  name, setName, setBio, bio}) =>
   }
 
   return (
-    <div className='h-screen flex justify-center items-center'>
-        <div className="bg-gray rounded-md p-8 ex-small:p-12 flex flex-col items-center">
+    <div className='h-screen flex justify-center items-center '>
+        <div className="bg-gray rounded-md p-8 ex-small:p-12 flex flex-col items-center relative ">
             <h1 className='text-lg ex-small:text-xl text-center'>Set Profile</h1>
-            
-            <AddImage profileImg={profileImg} setProfileImg={setProfileImg} />
+
+            {loading && <Loader />}
+
+            <AddImage loading={loading} setLoading={setLoading} profileImg={profileImg} setProfileImg={setProfileImg} />
             
             <input value={name} onChange={e => setName(e.target.value)} placeholder='Name' className={`input-field w-full ex-small:w-96 placeholder:text-gray-text ${nameError && 'error'}`} />
 

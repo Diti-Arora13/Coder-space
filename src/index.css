@@ -32,13 +32,20 @@
     }
 
     .loader-text{
-      animation: loadingAnim 1s forwards;
-      transition: 1s linear;
+      animation: blinkAnim 1s linear infinite;
     }
 
-    @keyframes loadingAnim {
-      10%, 50%, 90% { opacity: 0.5}
-      0%, 20%, 60%, 100%  { opacity: 1}
+    .loader {
+      animation: loaderAnim 1s linear infinite;
+    }
+
+    @keyframes blinkAnim {
+      50% { opacity: 0; }
+    }
+    
+    @keyframes loaderAnim {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
   }

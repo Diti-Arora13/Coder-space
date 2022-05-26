@@ -4,7 +4,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import AddPost from '../images/addPost.png'
 import Axios from 'axios'
 
-const CreatePost = ({ onAdd }) => {
+const CreatePost = ({ onAdd, setLoading }) => {
   let fileInput = useRef()
   let navigate  = useNavigate()
 
@@ -27,10 +27,12 @@ const CreatePost = ({ onAdd }) => {
     const formData = new FormData()
     formData.append('file', postImg)
     formData.append('upload_preset', 'hk7ixu95')
-
+    setLoading(true)
+    
     Axios.post('https://api.cloudinary.com/v1_1/diti/image/upload', formData)
     .then(res => {
       onAdd(desc, res.data.secure_url)
+      setLoading(false)
     })
   }
 
