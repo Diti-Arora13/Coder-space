@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Landing from "./Components/Landing";
 import SignUp from "./Components/SignUp";
-import Login from "./Components/Login";
 import SetProfile from "./Components/SetProfile";
 import HomePage from "./Components/HomePage";
 import Profile from "./Components/Profile";
@@ -146,20 +145,6 @@ function App() {
                 setEmail={setEmail}
                 password={password}
                 setPassword={setPassword}
-              />
-            }
-          />
-
-          {/* LOGIN */}
-          <Route
-            path="/login"
-            element={
-              <Login
-                setLogged={setLogged}
-                email={email}
-                password={password}
-                setPassword={setPassword}
-                setEmail={setEmail}
               />
             }
           />
